@@ -2,11 +2,11 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 in1 = 27
-in2 = 17
+in2 = 22
 in3 = 23
 in4 = 24
 
-ena = 22
+ena = 17
 enb = 25
 
 temp1 = 1
@@ -46,11 +46,15 @@ while (1):
         if (temp1 == 1):
             GPIO.output(in1, GPIO.HIGH)
             GPIO.output(in2, GPIO.LOW)
+            GPIO.output(in3, GPIO.HIGH)
+            GPIO.output(in4, GPIO.LOW)
             print("forward")
             x = 'z'
         else:
             GPIO.output(in1, GPIO.LOW)
             GPIO.output(in2, GPIO.HIGH)
+            GPIO.output(in3, GPIO.LOW)
+            GPIO.output(in4, GPIO.HIGH)
             print("backward")
             x = 'z'
 
@@ -59,12 +63,16 @@ while (1):
         print("stop")
         GPIO.output(in1, GPIO.LOW)
         GPIO.output(in2, GPIO.LOW)
+        GPIO.output(in3, GPIO.LOW)
+        GPIO.output(in4, GPIO.LOW)
         x = 'z'
 
     elif x == 'f':
         print("forward")
         GPIO.output(in1, GPIO.HIGH)
         GPIO.output(in2, GPIO.LOW)
+        GPIO.output(in3, GPIO.HIGH)
+        GPIO.output(in4, GPIO.LOW)
         temp1 = 1
         x = 'z'
 
@@ -72,22 +80,27 @@ while (1):
         print("backward")
         GPIO.output(in1, GPIO.LOW)
         GPIO.output(in2, GPIO.HIGH)
+        GPIO.output(in3, GPIO.LOW)
+        GPIO.output(in4, GPIO.HIGH)
         temp1 = 0
         x = 'z'
 
     elif x == 'l':
         print("low")
         a.ChangeDutyCycle(25)
+        b.ChangeDutyCycle(25)
         x = 'z'
 
     elif x == 'm':
         print("medium")
         a.ChangeDutyCycle(50)
+        b.ChangeDutyCycle(50)
         x = 'z'
 
     elif x == 'h':
         print("high")
         a.ChangeDutyCycle(75)
+        b.ChangeDutyCycle(75)
         x = 'z'
 
 
